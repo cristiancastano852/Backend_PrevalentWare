@@ -11,11 +11,10 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "_Role")
+@Table(name = "\"Role\"")
 public class Role {
     
     @Id
-    @Column(columnDefinition = "TEXT DEFAULT uuid_generate_v4()")
     private String id;
 
     public enum Enum_RoleName {
@@ -25,7 +24,7 @@ public class Role {
     @Enumerated(EnumType.STRING)
     private Enum_RoleName name;
     
-    @Column(name = "createdAt", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "\"createdAt\"", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime createdAt;
 
     @PrePersist

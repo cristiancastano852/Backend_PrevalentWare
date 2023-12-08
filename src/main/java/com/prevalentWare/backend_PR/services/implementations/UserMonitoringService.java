@@ -20,6 +20,7 @@ public class UserMonitoringService implements IUserMonitoringService{
     public ResponseEntity<List<UserMonitoring>> findAll() {
         try {
             List<UserMonitoring> userMonitorings = this.userMonitoringRepository.findAll();
+            System.out.println("userMonitorings: " + userMonitorings);
             return new ResponseEntity<List<UserMonitoring>>(userMonitorings, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<List<UserMonitoring>>(HttpStatus.INTERNAL_SERVER_ERROR);
