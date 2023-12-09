@@ -9,7 +9,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.ForeignKey;
 @Entity
 @Table(name = "\"UserMonitoring\"")
 public class UserMonitoring {
@@ -21,23 +20,24 @@ public class UserMonitoring {
 
     private String description;
 
-    // @Column(name = "userId")
-    // private String userId;
-
     @Column(name = "\"createdAt\"", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime createdAt;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "\"userId\"", referencedColumnName = "id", foreignKey = @ForeignKey(name = "UserMonitoring_userId_fkey"))
-    private User userId; // Relación Many-to-One con User
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "\"userId\"", referencedColumnName = "id")
+    private User user;
 
-    // Constructor, Getters, and Setters
+    public User getUser() {
+        return user;
+    }
 
-    // Constructor
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public UserMonitoring() {
     }
 
-    // Getters and Setters for all fields
     public String getId() {
         return id;
     }
@@ -62,14 +62,6 @@ public class UserMonitoring {
         this.description = description;
     }
 
-    // public String getUserId() {
-    //     return userId;
-    // }
-
-    // public void setUserId(String userId) {
-    //     this.userId = userId;
-    // }
-
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
@@ -77,4 +69,6 @@ public class UserMonitoring {
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
+
+
 }

@@ -1,10 +1,14 @@
 package com.prevalentWare.backend_PR.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -34,6 +38,16 @@ public class User {
     @Column(name = "\"roleId\"")
     private String roleId;
 
+    // @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    // private List<UserMonitoring> userMonitorings = new ArrayList<>();
+
+    // public List<UserMonitoring> getUserMonitorings() {
+    //     return userMonitorings;
+    // }
+
+    // public void setUserMonitorings(List<UserMonitoring> userMonitorings) {
+    //     this.userMonitorings = userMonitorings;
+    // }
     // @ManyToOne(fetch = FetchType.LAZY)
     // @JoinColumn(name = "roleId", referencedColumnName = "id", foreignKey = @ForeignKey(name = "User_roleId_fkey"))
     public User() {
