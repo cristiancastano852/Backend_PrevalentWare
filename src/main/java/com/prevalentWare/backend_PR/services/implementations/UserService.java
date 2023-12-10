@@ -19,6 +19,7 @@ public class UserService implements IUserService {
     @Override
     public ResponseEntity<List<User>> findAll() {
         try {
+            System.out.println("asdasdasdasdasdasddddddddd");
             List<User> users = this.userRepository.findAll();
             return new ResponseEntity<List<User>>(users, HttpStatus.OK);
         } catch (Exception e) {

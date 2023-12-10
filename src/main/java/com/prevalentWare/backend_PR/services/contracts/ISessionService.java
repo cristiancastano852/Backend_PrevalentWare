@@ -10,5 +10,8 @@ public interface ISessionService {
     // public ResponseEntity<String> login(String username, String password);
     // public ResponseEntity<String> logout();
     public ResponseEntity<List<Session>> findAll();
+    //findByToken()
+    public ResponseEntity<Session> findBySessionToken(String token);
+    // ResponseEntity<List<Session>> findAllPaginated(Integer page, Integer size);
     
 }

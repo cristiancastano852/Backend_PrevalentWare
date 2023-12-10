@@ -39,7 +39,6 @@ public class SessionService implements ISessionService{
 
     @Override
     public ResponseEntity<List<Session>> findAll() {
-        System.out.println("aaaaaaaaaddddddddddddddddd");
         try {
             List<Session> sessions = this.sessionRepository.findAll();
             return new ResponseEntity<List<Session>>(sessions, HttpStatus.OK);
@@ -47,6 +46,16 @@ public class SessionService implements ISessionService{
             return ResponseEntity.internalServerError().build();
         }
 
+    }
+
+    @Override
+    public ResponseEntity<Session> findBySessionToken(String token) {
+        try {
+            Session session = this.sessionRepository.findBySessionToken(token);
+            return new ResponseEntity<Session>(session, HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
     }
     
 }
