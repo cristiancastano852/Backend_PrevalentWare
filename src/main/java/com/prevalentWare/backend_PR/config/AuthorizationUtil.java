@@ -2,7 +2,6 @@ package com.prevalentWare.backend_PR.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import com.prevalentWare.backend_PR.entities.Role;
 import com.prevalentWare.backend_PR.entities.Session;
 import com.prevalentWare.backend_PR.entities.User;

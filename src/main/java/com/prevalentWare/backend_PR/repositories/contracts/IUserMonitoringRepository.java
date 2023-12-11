@@ -21,21 +21,7 @@ public interface IUserMonitoringRepository extends JpaRepository<UserMonitoring,
             @Param("endDate") LocalDateTime endDate,
             Pageable pageable);
     List<UserMonitoring> findByUser_EmailAndCreatedAtBetween(String email, LocalDateTime startDate, LocalDateTime endDate,  Pageable pageable);
-    // @Query("SELECT u.id, u.name, um.usage, um.description " +
-    //        "FROM UserMonitoring um " +
-    //        "JOIN User u ON um.userId=u.id " +
-    //        "JOIN _CountryToUser ctu ON u.id=ctu.B " +
-    //        "WHERE um.usage = :usageType " +
-    //        "AND ctu.country.id = :countryId " +
-    //        "AND um.createdAt >= :startDate " +
-    //        "AND um.createdAt <= :endDate " +
-    //        "ORDER BY um.usage DESC")
-//     @Query(value = "SELECT um.id, um.usage, um.description, um.userId"+
-//         "FROM UserMonitoring um JOIN um.user u JOIN _CountryToUser co ON u.id = co.B "+
-//         "WHERE um.description = :usageType "+
-//         "AND co.A = :countryId "+
-//         "AND um.createdAt >= :startDate "+
-//         "AND um.createdAt <= :endDate", nativeQuery = true)
+
 //     @Query("SELECT um.id, um.usage, um.description, um.userId "+
 //         "FROM UserMonitoring um "+
 //         "JOIN User u ON um.userId = u.id "+
@@ -44,12 +30,7 @@ public interface IUserMonitoringRepository extends JpaRepository<UserMonitoring,
 //         "AND co.A = :countryId "+
 //         "AND um.createdAt >= :startDate "+
 //         "AND um.createdAt <= :endDate")
-    
-//     List<Object[]> findTopUsersByUsageTypeAndCountryAndDateRange(
-//             @Param("usageType") String usageType,
-//             @Param("countryId") String countryId,
-//             @Param("startDate") LocalDateTime startDate,
-//             @Param("endDate") LocalDateTime endDate);
+
 // List<UserMonitoring> findByDescriptionAndUser_Country_IdAndCreatedAtBetween(
 //             String description,
 //             String countryId,

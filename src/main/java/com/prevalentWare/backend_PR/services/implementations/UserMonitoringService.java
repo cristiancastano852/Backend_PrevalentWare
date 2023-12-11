@@ -3,9 +3,6 @@ package com.prevalentWare.backend_PR.services.implementations;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,21 +10,16 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import com.prevalentWare.backend_PR.entities.User;
 import com.prevalentWare.backend_PR.entities.UserMonitoring;
 import com.prevalentWare.backend_PR.entities.UserWithRecordCount;
 import com.prevalentWare.backend_PR.repositories.contracts.IUserMonitoringRepository;
-import com.prevalentWare.backend_PR.repositories.contracts.IUserRepository;
 import com.prevalentWare.backend_PR.services.contracts.IUserMonitoringService;
 
 @Service
 public class UserMonitoringService implements IUserMonitoringService{
     @Autowired
     private IUserMonitoringRepository userMonitoringRepository;
-
-    @Autowired
-    private IUserRepository userRepository;
 
     @Override
     public ResponseEntity<List<UserMonitoring>> findAll() {
@@ -64,9 +56,6 @@ public class UserMonitoringService implements IUserMonitoringService{
     @Override
     public List<UserWithRecordCount> findTopThreeUsersWithMostRecordsInDateRange(
         LocalDateTime startDate, LocalDateTime endDate, Pageable pageable) {
-        // List<Object[]> topUsers = userMonitoringRepository.findTopThreeUsersByRecordCount(startDate, endDate);
-        // Pageable pageable = PageRequest.of(0, 3);
-        // List<UserWithRecordCount> usersWithRecordCount = new ArrayList<>();
 
         List<Object[]> topUsersData = userMonitoringRepository.findTopThreeUsersByRecordCount(startDate, endDate, pageable);
         
