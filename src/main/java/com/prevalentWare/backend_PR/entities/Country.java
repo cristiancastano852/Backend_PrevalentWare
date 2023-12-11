@@ -4,35 +4,29 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "\"Role\"")
-public class Role {
-    
+@Table(name = "\"Country\"")
+public class Country {
+
     @Id
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String id;
 
-    public enum Enum_RoleName {
-        Admin, Manager, User
-    }
-    
-    @Enumerated(EnumType.STRING)
-    private Enum_RoleName name;
-    
+    @Column(columnDefinition = "TEXT", nullable = false)
+    private String name;
+
     @Column(name = "\"createdAt\"", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime createdAt;
 
-    @PrePersist
-    protected void onCreate() {
-        createdAt = LocalDateTime.now();
-    }
+    @Column(name = "\"updatedAt\"", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+    private LocalDateTime updatedAt;
 
-    public Role() {
+    public Country() {
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
     }
 
     public String getId() {
@@ -43,11 +37,11 @@ public class Role {
         this.id = id;
     }
 
-    public Enum_RoleName getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(Enum_RoleName name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -59,5 +53,11 @@ public class Role {
         this.createdAt = createdAt;
     }
 
-    
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 }
