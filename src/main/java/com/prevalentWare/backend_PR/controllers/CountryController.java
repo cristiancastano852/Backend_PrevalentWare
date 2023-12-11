@@ -23,8 +23,7 @@ public class CountryController {
     @Autowired
     private AuthorizationUtil authorizationUtil;
 
-    @GetMapping("/lists")
-    private ResponseEntity<?> getAllCountries(
+    @GetMapping("/lists") ResponseEntity<?> getAllCountries(
         @RequestHeader("Authorization") String token,
         @RequestParam(defaultValue = "0") Integer page,
         @RequestParam(defaultValue = "10") Integer size) {
