@@ -7,7 +7,6 @@ import com.prevalentWare.backend_PR.entities.Role;
 import com.prevalentWare.backend_PR.entities.Session;
 import com.prevalentWare.backend_PR.entities.User;
 import com.prevalentWare.backend_PR.entities.Role.Enum_RoleName;
-import com.prevalentWare.backend_PR.repositories.contracts.IRoleRepository;
 import com.prevalentWare.backend_PR.repositories.contracts.ISessionRepository;
 import com.prevalentWare.backend_PR.repositories.contracts.IUserRepository;
 
@@ -20,8 +19,6 @@ public class AuthorizationUtil {
     @Autowired
     private IUserRepository userRepository;
 
-    @Autowired
-    private IRoleRepository roleRepository;
 
     public boolean isAuthorized(String token, String... allowedRoles) {
         Session session = this.sessionRepository.findBySessionToken(token);
@@ -34,8 +31,7 @@ public class AuthorizationUtil {
             return false;
         }
 
-        String roleId = user.getRoleId();
-        Role role = this.roleRepository.findById(roleId).orElse(null);
+        Role role = user.getRole();
         if (role == null) {
             return false;
         }

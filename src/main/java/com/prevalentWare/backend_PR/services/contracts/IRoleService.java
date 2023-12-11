@@ -6,5 +6,6 @@ import com.prevalentWare.backend_PR.entities.Role;
 
 public interface IRoleService {
     public ResponseEntity<List<Role>> findAll();
+    public ResponseEntity<List<Role>> findAllPaginated(Integer page, Integer size);
     
 }
