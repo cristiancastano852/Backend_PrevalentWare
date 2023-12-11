@@ -8,4 +8,5 @@ import com.prevalentWare.backend_PR.entities._CountryToUser;
 
 public interface I_CountryToUserService {
     public ResponseEntity<List<_CountryToUser>> findAll();
+    ResponseEntity<List<_CountryToUser>> findAllPaginated(Integer page, Integer size);
 }

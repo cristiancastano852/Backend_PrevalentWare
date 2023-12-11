@@ -20,7 +20,6 @@ public class MyPhysicalNamingStrategy  implements PhysicalNamingStrategy {
 
     @Override
     public Identifier toPhysicalTableName(Identifier name, JdbcEnvironment context) {
-        System.out.println("toPhysicalTableNaaaaaaaaaame: " + name);
         return name;
     }
 

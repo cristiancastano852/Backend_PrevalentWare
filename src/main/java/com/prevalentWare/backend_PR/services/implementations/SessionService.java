@@ -3,6 +3,8 @@ package com.prevalentWare.backend_PR.services.implementations;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -39,7 +41,6 @@ public class SessionService implements ISessionService{
 
     @Override
     public ResponseEntity<List<Session>> findAll() {
-        System.out.println("aaaaaaaaaddddddddddddddddd");
         try {
             List<Session> sessions = this.sessionRepository.findAll();
             return new ResponseEntity<List<Session>>(sessions, HttpStatus.OK);
@@ -47,6 +48,27 @@ public class SessionService implements ISessionService{
             return ResponseEntity.internalServerError().build();
         }
 
+    }
+
+    @Override
+    public ResponseEntity<Session> findBySessionToken(String token) {
+        try {
+            Session session = this.sessionRepository.findBySessionToken(token);
+            return new ResponseEntity<Session>(session, HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    @Override
+    public ResponseEntity<List<Session>> findAllPaginated(Integer page, Integer size) {
+        try {
+            Pageable pageable = PageRequest.of(page, size);
+            List<Session> sessions = this.sessionRepository.findAll(pageable).getContent();
+            return new ResponseEntity<List<Session>>(sessions, HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
     }
     
 }
